@@ -4,6 +4,8 @@ require_once "../includes/auth_check.php";
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +27,10 @@ require_once "../includes/auth_check.php";
 
             <hr>
 
-            <h5>Welcome, <?php echo $_SESSION["email"]; ?></h5>
-
+           <h5>
+    Welcome,
+    <?php echo htmlspecialchars($_SESSION["email"] ?? "User"); ?>
+</h5>
             <p>You have successfully logged in.</p>
 
             <a href="../includes/logout.php" class="btn btn-danger">

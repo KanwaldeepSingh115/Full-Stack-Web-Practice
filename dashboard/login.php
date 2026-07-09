@@ -8,11 +8,28 @@ exit;
 
 }
 
-if(isset($_COOKIE["remember_user"])){
-    $_SESSION["user_id"] = $_COOKIE["remember_user"];
+if (isset($_COOKIE["remember_user"])) {
 
-    header("Location: ../dashboard/dashboard.php");
-    exit;
+    $userId = $_COOKIE["remember_user"];
+
+    $stmt = $conn->prepare("SELECT login_id, email FROM login WHERE login_id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+
+        $user = $result->fetch_assoc();
+
+        $_SESSION["user_id"] = $user["login_id"];
+        $_SESSION["email"] = $user["email"];
+
+        header("Location: ../dashboard/dashboard.php");
+        exit;
+    }
+
+    setcookie("remember_user", "", time() - 3600, "/");
 }
 
 ?>
@@ -153,7 +170,7 @@ if(isset($_COOKIE["remember_user"])){
 
                                 </div>
 
-                                <a href="#" class="forgot-link">
+                                <a href="../dashboard/forgot_password.php" class="forgot-link">
 
                                     Forgot Password?
 

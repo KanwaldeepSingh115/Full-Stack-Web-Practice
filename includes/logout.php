@@ -6,7 +6,8 @@ session_unset();
 
 session_destroy();
 
-setcookie("remeber_user",
+setcookie(
+"remember_user",
 "",
 time() - 3600,
 "/");
