@@ -4,38 +4,47 @@ require_once "../includes/auth_check.php";
 
 ?>
 
+<?php include "../includes/header.php"; ?>
 
+<?php include "../includes/navbar.php"; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+<div class="container-fluid">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+    <div class="row">
 
-<div class="container mt-5">
+        <?php include "../includes/sidebar.php"; ?>
 
-    <div class="card shadow">
+        <div class="col-md-10 p-4">
 
-        <div class="card-body">
+            <h2>
 
-            <h2>Dashboard</h2>
+                Dashboard
+
+            </h2>
 
             <hr>
 
-           <h5>
-    Welcome,
-    <?php echo htmlspecialchars($_SESSION["email"] ?? "User"); ?>
-</h5>
-            <p>You have successfully logged in.</p>
+            <div class="card shadow">
 
-            <a href="../includes/logout.php" class="btn btn-danger">
-                Logout
-            </a>
+                <div class="card-body">
+
+                    <h4>
+
+                        Welcome,
+
+                        <?php echo htmlspecialchars($_SESSION["email"]); ?>
+
+                    </h4>
+
+                    <p>
+
+                        You have successfully logged in.
+
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -43,5 +52,4 @@ require_once "../includes/auth_check.php";
 
 </div>
 
-</body>
-</html>
+<?php include "../includes/footer.php"; ?>
